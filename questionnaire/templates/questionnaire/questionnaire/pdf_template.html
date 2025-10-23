@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Questions et Réponses</title>
+    <style>
+        body {
+            font-family: DejaVu Sans, sans-serif;
+            font-size: 12px;
+        }
+        h1 {
+            text-align: center;
+            color: #1a73e8;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #888;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        td p {
+            margin: 0;
+            text-align: justify;
+        }
+    </style>
+</head>
+<body>
+    <h1>Historique des Questions et Réponses</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Question</th>
+                <th>Réponse</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for q in questions %}
+            <tr>
+                <td>{{ q.texte }}</td>
+                <td><p>{{ q.reponse }}</p></td>
+                <td>{{ q.date_ajout|date:"d/m/Y H:i" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
