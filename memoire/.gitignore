@@ -1,0 +1,69 @@
+# --- Django / PythonAnywhere clean setup ---
+
+# Environnement virtuel
+venv/
+env/
+ENV/
+.venv/
+
+# Base de données locale (chaque serveur a la sienne)
+db.sqlite3
+
+# Fichiers temporaires et caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.log
+*.pot
+*.pyc
+
+# Fichiers générés par Django
+/static/
+staticfiles/
+media/
+uploads/
+*.pdf
+
+# Configuration spécifique à l'IDE
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Migrations (facultatif, mais tu peux garder les tiennes si tu veux)
+# migrations/
+# !*/migrations/__init__.py
+
+# Fichiers système macOS
+.DS_Store
+.Trashes
+.AppleDouble
+.LSOverride
+
+# Backup / export
+*.bak
+*.zip
+*.tar
+*.tar.gz
+
+# Fichiers secrets (optionnel)
+*.env
+.env
+
+# Rapport / tests
+.coverage
+htmlcov/
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+
+# Django collectstatic output (on le régénère sur le serveur)
+static_cdn/
+static_collected/
+
+# PyCharm / IntelliJ
+.idea/
+
+# Jupyter / IPython
+.ipynb_checkpoints/
