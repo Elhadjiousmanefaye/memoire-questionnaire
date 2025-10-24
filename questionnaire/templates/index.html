@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+<div class="text-center">
+    <div class="p-5 rounded shadow-sm" style="background-color: white;">
+        <h2 class="mb-4 text-primary">🎓 Bienvenue sur la plateforme de préparation de mémoire</h2>
+        <p class="lead">
+            Cet outil aide les étudiants à anticiper les questions possibles lors de leur dépôt de mémoire.<br>
+            Chaque étudiant dispose d’un compte personnel avec son historique et ses réponses sauvegardées.
+        </p>
+        <div class="mt-4 d-flex justify-content-center gap-4">
+            <a href="{% url 'login' %}" class="btn btn-outline-primary btn-lg">🔐 Connexion</a>
+            <a href="{% url 'inscription' %}" class="btn btn-success btn-lg">🧑‍🎓 Inscription</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -12,11 +12,19 @@ import os
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from .forms import EtudiantInscriptionForm
+from django.contrib import messages
+
 # Create your views here.
 
 import wikipedia
 from django.shortcuts import render
 from .models import Question
+
+
+
+def home_view(request):
+    return render(request, 'index.html')
 
 
 
@@ -45,6 +53,19 @@ def poser_question(request):
         "reponse": reponse,
         "question": question_text
     })
+
+
+def inscription(request):
+    if request.method == 'POST':
+        form = EtudiantInscriptionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Inscription réussie ! Vous pouvez maintenant vous connecter.")
+            return redirect('login')
+    else:
+        form = EtudiantInscriptionForm()
+
+    return render(request, 'questionnaire/inscription.html', {'form': form})
 
 
 # ✅ Nouvelle vue : afficher toutes les questions enregistrées
