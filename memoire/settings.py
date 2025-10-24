@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-^pw)=an)d72g_c-ppdh+r-=wu-fvuozjb1+)je-dkd*swsy7++
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['elhadjiousmanefaye.pythonanywhere.com', 'www.elhadjiousmanefaye.pythonanywhere.com']
+
 
 
 # Application definition
@@ -120,7 +121,13 @@ STATICFILES_DIRS = [
     BASE_DIR / "questionnaire/static",
 ]
 
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/questionnaire/'
+LOGOUT_REDIRECT_URL = '/login/'

@@ -10,12 +10,17 @@ from .models import Question
 from datetime import datetime
 import os
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 # Create your views here.
 
 import wikipedia
 from django.shortcuts import render
 from .models import Question
 
+
+
+@login_required
 def poser_question(request):
     reponse = None
     question_text = ""
@@ -23,45 +28,29 @@ def poser_question(request):
     if request.method == "POST":
         question_text = request.POST.get("question")
         try:
+            import wikipedia
             wikipedia.set_lang("fr")
-            reponse = wikipedia.summary(question_text, sentences=3, auto_suggest=True)
+            reponse = wikipedia.summary(question_text, sentences=3)
         except Exception:
             reponse = "Désolé, je n'ai pas trouvé de réponse à cette question."
 
-        # ✅ Sauvegarder dans la base de données
-        Question.objects.create(texte=question_text, reponse=reponse)
+        # ✅ Sauvegarde liée à l'utilisateur connecté
+        Question.objects.create(
+            auteur=request.user,
+            texte=question_text,
+            reponse=reponse
+        )
 
     return render(request, "questionnaire/poser_question.html", {
         "reponse": reponse,
-        "question": question_text,
-    })
-
-
-
-def poser_question(request):
-    reponse = None
-    question_text = ""
-
-    if request.method == "POST":
-        question_text = request.POST.get("question")
-        try:
-            wikipedia.set_lang("fr")
-            reponse = wikipedia.summary(question_text, sentences=3, auto_suggest=True)
-        except Exception:
-            reponse = "Désolé, je n'ai pas trouvé de réponse à cette question."
-
-        # ✅ Sauvegarde automatique
-        Question.objects.create(texte=question_text, reponse=reponse)
-
-    return render(request, "questionnaire/poser_question.html", {
-        "reponse": reponse,
-        "question": question_text,
+        "question": question_text
     })
 
 
 # ✅ Nouvelle vue : afficher toutes les questions enregistrées
+@login_required
 def historique(request):
-    questions = Question.objects.order_by('-date_ajout')  # tri par date décroissante
+    questions = Question.objects.filter(auteur=request.user).order_by('-date_ajout')
     return render(request, "questionnaire/historique.html", {"questions": questions})
 
 
