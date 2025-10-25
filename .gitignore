@@ -1,0 +1,38 @@
+# --- Django / PythonAnywhere clean setup ---
+
+# Environnement virtuel
+venv/
+env/
+.venv/
+
+# Base de données locale
+db.sqlite3
+
+# Fichiers temporaires et caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.log
+
+# Fichiers générés par Django
+/static/
+staticfiles/
+media/
+uploads/
+*.pdf
+
+# IDE et système
+.idea/
+.vscode/
+.DS_Store
+
+# Fichiers secrets
+.env
+*.env
+
+# Sauvegardes
+*.bak
+*.zip
+*.tar
+*.tar.gz
+
